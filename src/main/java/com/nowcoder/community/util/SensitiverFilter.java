@@ -25,7 +25,7 @@ public class SensitiverFilter {
 
     @PostConstruct
     public void init() {
-        try(InputStream is = this.getClass().getClassLoader().getResourceAsStream("sensitive-words.txt ");
+        try(InputStream is = this.getClass().getClassLoader().getResourceAsStream("sensitive-words.txt");//这个地方你的地址写错了
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             ){
             String keyword;

@@ -63,7 +63,7 @@ public class Page {
      *
      * @return
      */
-    public int getoffset() {
+    public int getOffset() {
         return (current - 1) * limit;
     }
 

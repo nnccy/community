@@ -58,7 +58,10 @@ class CommunityApplicationTests implements ApplicationContextAware {
         System.out.println(alphaService);
         System.out.println(simpleDateFormat.format(new Date()));
     }
-
+    @Test
+    public void testThing(){
+        alphaService.save1();
+    }
 
 
 }

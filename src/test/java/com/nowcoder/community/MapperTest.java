@@ -1,9 +1,11 @@
 package com.nowcoder.community;
 import com.nowcoder.community.dao.DiscussPostMapper;
 import com.nowcoder.community.dao.LoginTicketMapper;
+import com.nowcoder.community.dao.MessageMapper;
 import com.nowcoder.community.dao.UserMapper;
 import com.nowcoder.community.entity.DiscussPost;
 import com.nowcoder.community.entity.LoginTicket;
+import com.nowcoder.community.entity.Message;
 import com.nowcoder.community.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class MapperTest{
     DiscussPostMapper discussPostMapper;
     @Autowired
     LoginTicketMapper loginTicketMapper;
+    @Autowired
+    MessageMapper messageMapper;
+
     @Test
     public void testSelectUser(){
         User user = userMapper.selectById(101);
@@ -56,7 +61,7 @@ public class MapperTest{
     }
     @Test
     public void testSelectDiscussPost(){
-        List<DiscussPost> discussPosts = discussPostMapper.selectDiscussPosts(0,2,10);
+        List<DiscussPost> discussPosts = discussPostMapper.selectDiscussPosts(0,2,10,0);
         for (int i = 0; i < discussPosts.size(); i++) {
             System.out.println(discussPosts.get(i));
         }
@@ -76,6 +81,28 @@ public class MapperTest{
         System.out.println(loginTicket1);
 
         a = loginTicketMapper.updateStatus("hh",3);
+    }
+
+    @Test
+    public void testMessageMapper(){
+        List<Message> list = messageMapper.selectConversations(111,0,20);
+        for (Message message:list) {
+            System.out.println(message.toString());
+        }
+        System.out.println("---------------------------------");
+        int count = messageMapper.selectConversationCount(111);
+        System.out.println(count);
+        System.out.println("---------------------------------");
+        List<Message> list2 = messageMapper.selectLetters("111_112",0,20);
+        for (Message message:list2) {
+            System.out.println(message.toString());
+        }
+        System.out.println("---------------------------------");
+        int count2 = messageMapper.selectLetterCount("111_112");
+        System.out.println(count2);
+        System.out.println("---------------------------------");
+        int count3 = messageMapper.selectLetterUnreadCount(112,"111_112");
+        System.out.println(count3);
     }
 
 }
