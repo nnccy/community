@@ -27,7 +27,7 @@ source C:/java/sql/community-init-sql-1.5/tables_mysql_innodb.sql;
 ### 部署
 ```bash
 wget -i -c 链接
-pscp 文件名 root@ip:/root/test
+scp -P 22 文件名 root@ip:/root/test
 yum list unzip*
 yumm install -y unzip
 java-latest-openjdk.x86_64

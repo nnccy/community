@@ -220,7 +220,7 @@ public class LoginController implements CommunityConstant {
             return CommunityUtil.getJSONString(1, "邮箱不能为空！");
         }
 
-        // 发送邮件
+
         Context context = new Context();
         context.setVariable("email", email);
         String code = CommunityUtil.generateUUID().substring(0, 4);
@@ -228,7 +228,6 @@ public class LoginController implements CommunityConstant {
         String content = templateEngine.process("/mail/forget", context);
         mailClient.sendMail(email, "找回密码", content);
 
-        // 保存验证码
         session.setAttribute("verifyCode", code);
 
         return CommunityUtil.getJSONString(0);
